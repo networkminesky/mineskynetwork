@@ -20,6 +20,7 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minesky.Main;
+import net.minesky.hooks.VelocityVanishHook;
 
 public class Tell {
 
@@ -77,7 +78,7 @@ public class Tell {
 
     static void sendTell(Player source, Player who, String msg) {
 
-        if(who == null || (Main.isPlayerVanished(who) && !source.hasPermission("mineskynetwork.tell.sendtovanished"))) {
+        if(who == null || (VelocityVanishHook.isPlayerVanished(who) && !source.hasPermission("mineskynetwork.tell.sendtovanished"))) {
             source.sendMessage(Component.text("Esse jogador não existe ou não está online.", NamedTextColor.RED));
             return;
         }
@@ -87,6 +88,7 @@ public class Tell {
             return;
         }
 
+        // unsafe
         final String outrosv = who.getCurrentServer().get().equals(source.getCurrentServer().get()) ?
                 "" : "\n\n§6* Jogador em outro servidor";
 
@@ -110,7 +112,8 @@ public class Tell {
                 .append(Component.text(":", NamedTextColor.DARK_GRAY))
                 .append(Component.text(" "+msg, rosaClaro, TextDecoration.ITALIC));
 
-        who.playSound(Sound.sound(Key.key("block.note_block.bell"), Sound.Source.MASTER, 0.5f, 1.2f));
+        who.playSound(Sound.sound(Key.key("block.note_block.bell"),
+                Sound.Source.MASTER, 0.5f, 1.2f), Sound.Emitter.self());
 
         source.sendMessage(paraQuemEnviou);
         who.sendMessage(paraQuemTaRecebendo);

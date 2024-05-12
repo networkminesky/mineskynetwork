@@ -29,16 +29,12 @@ public class Main {
     private final ProxyServer proxy;
     private final Logger logger;
 
-    public static boolean isPlayerVanished(Player p) {
-        return VelocityVanish.instance.vanishedPlayersOnline().contains(p.getUsername());
-    }
-
     @Inject
     public Main(ProxyServer proxy, Logger logger) {
         this.proxy = proxy;
         this.logger = logger;
 
-        logger.info("Plugin criado por Drawn e feito exclusivamente para o MineSky.");
+        logger.info("Plugin feito exclusivamente para o MineSky.");
     }
 
     public static List<String> onlineWithoutVanished(ProxyServer proxy) {
