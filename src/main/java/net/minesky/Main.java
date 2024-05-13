@@ -28,6 +28,8 @@ public class Main {
 
     private final ProxyServer proxy;
     private final Logger logger;
+    public static final MinecraftChannelIdentifier IDENTIFIER = MinecraftChannelIdentifier.from("custom:msne");
+
 
     @Inject
     public Main(ProxyServer proxy, Logger logger) {
@@ -49,6 +51,8 @@ public class Main {
 
     @Subscribe
     public void onProxyInitialize(ProxyInitializeEvent event) {
+        proxy.getChannelRegistrar().register(IDENTIFIER);
+        proxy.getEventManager().register(this, new PluginMessage(proxy));
         CommandManager commandManager = proxy.getCommandManager();
 
         final BrigadierCommand staffChat = StaffChat.createBrigadierCommand(proxy);
