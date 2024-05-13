@@ -13,6 +13,8 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
+import java.io.EOFException;
+
 public class PluginMessage {
     private final ProxyServer proxy;
 
@@ -23,7 +25,12 @@ public class PluginMessage {
     @Subscribe
     public void onPluginMessageReceived(PluginMessageEvent event) {
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
-        String subChannel = in.readUTF();
+        String subChannel = ""; // meio bosta mas pra resolver problemas
+        try {
+            subChannel = in.readUTF();
+        } catch(Exception ex) {
+            return;
+        }
 
         if (subChannel.equals("MessageEvent")) {
             String mensagem = in.readUTF();

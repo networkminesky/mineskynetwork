@@ -18,7 +18,7 @@ public class LiteBansHook {
                                   String server, boolean silent) {
         ByteArrayDataOutput byteData = ByteStreams.newDataOutput();
         byteData.writeUTF("litebansevent");
-        byteData.writeUTF(punishType+"|"+playerInfo+"|"+staffer+"|"+reason+"|"+duration+"|"+punishType+"|"+server+"|"+silent);
+        byteData.writeUTF(punishType+"|"+playerInfo+"|"+staffer+"|"+reason+"|"+duration+"|"+server+"|"+silent);
 
         MessageUtils.sendDataToBackgroundServers(byteData);
     }
@@ -28,6 +28,8 @@ public class LiteBansHook {
             // evento quando alguem é mutado/banido/warnado etc
             @Override
             public void entryAdded(Entry entry) {
+                Main.logger.info("Nova punição registrada, enviando messaging.");
+
                 Player punishedPlayer = Main.proxy.getPlayer(UUID.fromString(entry.getUuid())).orElse(null);
                 String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " ["+entry.getUuid()+"]";
 
@@ -39,6 +41,8 @@ public class LiteBansHook {
             // evento quando alguém é desbanido/desmutado/deswarnado etc
             @Override
             public void entryRemoved(Entry entry) {
+                Main.logger.info("Nova punição removida, enviando messaging.");
+
                 Player punishedPlayer = Main.proxy.getPlayer(UUID.fromString(entry.getUuid())).orElse(null);
                 String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " ["+entry.getUuid()+"]";
 

@@ -36,7 +36,7 @@ import java.util.List;
 public class Main {
 
     public static ProxyServer proxy;
-    private final Logger logger;
+    public static Logger logger;
     public static final MinecraftChannelIdentifier IDENTIFIER = MinecraftChannelIdentifier.from("minesky:proxy");
 
     @Inject
