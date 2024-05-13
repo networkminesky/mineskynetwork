@@ -25,22 +25,23 @@ import net.minesky.commands.GlobalList;
 import net.minesky.commands.StaffChat;
 import net.minesky.commands.Tell;
 import net.minesky.events.PluginMessage;
+import net.minesky.hooks.LiteBansHook;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Plugin(id = "mineskynetwork", name = "MineSky Network", version = "1.0.0-SNAPSHOT",
-        description = "Plugin para funções gerais de Proxy", authors = {"Drawn"}, dependencies = { @Dependency(id = "velocityvanish") })
+@Plugin(id = "mineskynetwork", name = "MineSky Network", version = "1.0.3-SNAPSHOT",
+        description = "Plugin para funções gerais de Proxy", authors = {"Drawn", "BrunoC" }, dependencies = { @Dependency(id = "velocityvanish"), @Dependency(id = "litebans") })
 public class Main {
 
-    private final ProxyServer proxy;
+    public static ProxyServer proxy;
     private final Logger logger;
-    public static final MinecraftChannelIdentifier IDENTIFIER = MinecraftChannelIdentifier.from("custom:msne");
+    public static final MinecraftChannelIdentifier IDENTIFIER = MinecraftChannelIdentifier.from("minesky:proxy");
 
     @Inject
     public Main(ProxyServer proxy, Logger logger) {
-        this.proxy = proxy;
+        Main.proxy = proxy;
         this.logger = logger;
 
         logger.info("Plugin feito exclusivamente para o MineSky.");
@@ -59,6 +60,7 @@ public class Main {
     @Subscribe
     public void onProxyInitialize(ProxyInitializeEvent event) {
         proxy.getChannelRegistrar().register(IDENTIFIER);
+
         proxy.getEventManager().register(this, new PluginMessage(proxy));
         CommandManager commandManager = proxy.getCommandManager();
 
@@ -80,6 +82,8 @@ public class Main {
         final BrigadierCommand anunciar = Anunciar.createBrigadierCommand(proxy);
         commandManager.register(commandManager.metaBuilder(anunciar)
                 .build(), anunciar);
+
+        LiteBansHook.registerEvents();
 
     }
 

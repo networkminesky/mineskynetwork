@@ -19,6 +19,7 @@ public class PluginMessage {
     public PluginMessage(ProxyServer proxy) {
         this.proxy = proxy;
     }
+
     @Subscribe
     public void onPluginMessageReceived(PluginMessageEvent event) {
         ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
@@ -26,7 +27,7 @@ public class PluginMessage {
 
         if (subChannel.equals("MessageEvent")) {
             String mensagem = in.readUTF();
-            Component message = Component.text("NENHUM EVENT");
+            Component message = Component.text("NENHUM EVENTO");
             Component hoverTextTW = Component.text()
                     .append(Component.text("TijolãoWars").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .append(Component.newline())
@@ -119,36 +120,38 @@ public class PluginMessage {
                     .append(Component.newline())
                     .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .build();
+
             switch (mensagem) {
                 case "TijolãoWars":
                     message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evneto §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/server eventos"))
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTW);
                     break;
                 case "Corrida":
                     message = (Component) Component.text("§e§lCorrida §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/server eventos"))
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextC);
                     break;
                 case "TNTRun":
                     message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evneto §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/server eventos"))
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTR);
                     break;
                 case "CorridaBoat":
                     message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evneto §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/server eventos"))
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextCB);
                     break;
                 case "Sumo":
-                    message = (Component) Component.text("§4§lSumo §8| §aPara participar do evneto §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/server eventos"))
+                    message = (Component) Component.text("§4§lSumo §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextCB);
                     break;
             }
+
             for (Player player : proxy.getAllPlayers()) {
                 player.sendMessage(message);
-                player.playSound(Sound.sound(Key.key("minecraft", "entity.experience_orb.pickup"),
+                player.playSound(Sound.sound(Key.key("entity.experience_orb.pickup"),
                         Sound.Source.MASTER, 1f, 1f), Sound.Emitter.self());
             }
         }
@@ -156,24 +159,25 @@ public class PluginMessage {
         if (subChannel.equals("TextEvents")) {
             String mensagem = in.readUTF();
             Component mensagemFormatada = Component.text(mensagem);
+
             for (Player player : proxy.getAllPlayers()) {
                 player.sendMessage(mensagemFormatada);
-                player.playSound(Sound.sound(Key.key("entity.ender_dragon.ambient"), Sound.Source.AMBIENT, 1.0f, 1.0f));
+                player.playSound(Sound.sound(Key.key("entity.ender_dragon.ambient"), Sound.Source.AMBIENT, 1.0f, 1.0f), Sound.Emitter.self());
             }
         }
 
         if (subChannel.equals("ConectionEvents")) {
             String mensagem = in.readUTF();
-            Player player = proxy.getPlayer(mensagem).get();
-            player.createConnectionRequest(proxy.getServer("lobby").orElse(null)).fireAndForget();
+
+            proxy.getPlayer(mensagem).ifPresent(a -> a.createConnectionRequest(proxy.getServer("lobby").orElse(null)).fireAndForget());
         }
 
         if (subChannel.equals("PlayerMessage")) {
             String p = in.readUTF();
             String mensagem = in.readUTF();
             Component mensagemF = Component.text(mensagem);
-            Player player = proxy.getPlayer(p).get();
-            player.sendMessage(mensagemF);
+
+            proxy.getPlayer(p).ifPresent(d -> d.sendMessage(mensagemF)); // método mais seguro
         }
     }
 }
