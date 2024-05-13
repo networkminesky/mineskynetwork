@@ -1,25 +1,33 @@
 package net.minesky;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
 import com.google.inject.Inject;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandManager;
-import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import ir.syrent.velocityvanish.velocity.VelocityVanish;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.minesky.commands.Anunciar;
 import net.minesky.commands.GlobalList;
 import net.minesky.commands.StaffChat;
 import net.minesky.commands.Tell;
+import net.minesky.events.PluginMessage;
 import org.slf4j.Logger;
 
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Plugin(id = "mineskynetwork", name = "MineSky Network", version = "1.0.0-SNAPSHOT",
@@ -29,7 +37,6 @@ public class Main {
     private final ProxyServer proxy;
     private final Logger logger;
     public static final MinecraftChannelIdentifier IDENTIFIER = MinecraftChannelIdentifier.from("custom:msne");
-
 
     @Inject
     public Main(ProxyServer proxy, Logger logger) {
@@ -73,6 +80,7 @@ public class Main {
         final BrigadierCommand anunciar = Anunciar.createBrigadierCommand(proxy);
         commandManager.register(commandManager.metaBuilder(anunciar)
                 .build(), anunciar);
+
     }
 
 }
