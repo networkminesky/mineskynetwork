@@ -15,10 +15,10 @@ import java.util.UUID;
 public class LiteBansHook {
 
     public static void writeEvent(String punishType, String playerInfo, String staffer, String reason, String duration,
-                                  String server) {
+                                  String server, boolean silent) {
         ByteArrayDataOutput byteData = ByteStreams.newDataOutput();
         byteData.writeUTF("litebansevent");
-        byteData.writeUTF(punishType+"|"+playerInfo+"|"+staffer+"|"+reason+"|"+duration+"|"+punishType+"|"+server);
+        byteData.writeUTF(punishType+"|"+playerInfo+"|"+staffer+"|"+reason+"|"+duration+"|"+punishType+"|"+server+"|"+silent);
 
         MessageUtils.sendDataToBackgroundServers(byteData);
     }
@@ -29,22 +29,22 @@ public class LiteBansHook {
             @Override
             public void entryAdded(Entry entry) {
                 Player punishedPlayer = Main.proxy.getPlayer(UUID.fromString(entry.getUuid())).orElse(null);
-                String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " "+entry.getUuid();
+                String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " ["+entry.getUuid()+"]";
 
                     writeEvent(entry.getType().toUpperCase(),
                         nickname, entry.getExecutorName(), entry.getReason(), entry.getDurationString(),
-                            entry.getServerOrigin()+", afetado: "+entry.getServerScope());
+                            entry.getServerOrigin()+", afetado: "+entry.getServerScope(), entry.isSilent());
 
             }
             // evento quando alguém é desbanido/desmutado/deswarnado etc
             @Override
             public void entryRemoved(Entry entry) {
                 Player punishedPlayer = Main.proxy.getPlayer(UUID.fromString(entry.getUuid())).orElse(null);
-                String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " "+entry.getUuid();
+                String nickname = punishedPlayer == null ? "Desconhecido [Bugado]" : punishedPlayer.getUsername() + " ["+entry.getUuid()+"]";
 
                 writeEvent("UN"+entry.getType().toUpperCase(),
                         nickname, entry.getExecutorName(), entry.getReason(), entry.getDurationString(),
-                        entry.getServerOrigin()+", afetado: "+entry.getServerScope());
+                        entry.getServerOrigin()+", afetado: "+entry.getServerScope(), entry.isSilent());
 
             }
         });
