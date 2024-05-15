@@ -127,6 +127,71 @@ public class PluginMessage {
                     .append(Component.newline())
                     .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .build();
+            Component hoverTextMS = Component.text()
+                    .append(Component.text("Mini-Wars").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" O evento Mini-Wars é baseado em 4 times se").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" combatendo em uma pequena arena, defendendo a sua cor combatendo contra")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" outros jogadores utilizando bestas e espadas").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
+            Component hoverTextCP = Component.text()
+                    .append(Component.text("CopaPVP").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" Campeonato de x1 com ganhadores e posições finais.").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
+            Component hoverTextE = Component.text()
+                    .append(Component.text("Esconde-Esconde").color(NamedTextColor.LIGHT_PURPLE).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" Evento onde vários jogadores se escondem em uma").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" arena enquanto os staffers (ou outros jogadores) procuram todos os outros jogadores.").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
+            Component hoverTextR = Component.text()
+                    .append(Component.text("Ruínas").color(NamedTextColor.LIGHT_PURPLE).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" Evento onde vários jogadores tem que proteger os golems").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("de ferro dos mobs que terá em cada wave.").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
 
             switch (mensagem) {
                 case "TijolãoWars":
@@ -152,7 +217,27 @@ public class PluginMessage {
                 case "Sumo":
                     message = (Component) Component.text("§4§lSumo §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
-                            .hoverEvent(hoverTextCB);
+                            .hoverEvent(hoverTextS);
+                    break;
+                case "Mini-Wars":
+                    message = (Component) Component.text("§6§lMINI-WARS §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextMS);
+                    break;
+                case "CopaPVP":
+                    message = (Component) Component.text("§6§lCopaPVP §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextCP);
+                    break;
+                case "Esconde-esconde":
+                    message = (Component) Component.text("§d§lEsconde-Esconde §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextE);
+                    break;
+                case "Ruínas":
+                    message = (Component) Component.text("§d§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextR);
                     break;
             }
 
