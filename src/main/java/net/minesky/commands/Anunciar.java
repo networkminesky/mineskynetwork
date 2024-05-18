@@ -7,6 +7,7 @@ import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
@@ -33,17 +34,20 @@ public class Anunciar {
                             final String s = context.getArgument("mensagem", String.class).replace('&', '§');
                             final Component parsedLegacyText = LegacyComponentSerializer.legacySection().deserialize(s);
 
-                            Component t = Component.text(" \n§6§lMine§f§lSky §8: §f")
-                                    .append(parsedLegacyText)
-                                    .append(Component.text("\n ")
-                                            .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("" +
-                                                    "§a✔ Mensagem oficial do servidor!")))
-                                    ); // appendNewLine?
+                            Component t = Component.text(" \n§6§lMine§f§lSky §8: §6")
+                                    .append(parsedLegacyText.color(NamedTextColor.GOLD))
+                                    .append(Component.text("\n "))
+                                    .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("" +
+                                            "§a✔ Mensagem oficial do servidor!")));
 
                             for(Player b : proxy.getAllPlayers()) {
                                 b.sendMessage(t);
-                                b.playSound(Sound.sound(Key.key("entity.player.levelup"),
-                                        Sound.Source.MASTER, 1f, 1.4f), Sound.Emitter.self());
+
+                                // velocity ainda nao permite tocar sons, arrumar isso dps
+                                Sound sound = Sound.sound(Key.key("entity.player.levelup"), Sound.Source.MASTER, 1f, 1.4f);
+                                Audience audience = (Audience)b;
+
+                                audience.playSound(sound, Sound.Emitter.self());
                             }
 
                             return Command.SINGLE_SUCCESS;

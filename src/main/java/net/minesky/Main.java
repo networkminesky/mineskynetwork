@@ -20,10 +20,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import net.minesky.commands.Anunciar;
-import net.minesky.commands.GlobalList;
-import net.minesky.commands.StaffChat;
-import net.minesky.commands.Tell;
+import net.minesky.commands.*;
 import net.minesky.events.PluginMessage;
 import net.minesky.hooks.LiteBansHook;
 import org.slf4j.Logger;
@@ -79,7 +76,7 @@ public class Main {
                 .aliases("globallist")
                 .build(), gList);
 
-        final BrigadierCommand ping = GlobalList.createBrigadierCommand(proxy);
+        final BrigadierCommand ping = Ping.createBrigadierCommand(proxy);
         commandManager.register(commandManager.metaBuilder(ping)
                 .aliases("ping")
                 .build(), ping);
