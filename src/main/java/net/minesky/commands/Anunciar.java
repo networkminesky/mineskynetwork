@@ -10,6 +10,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
@@ -32,14 +33,17 @@ public class Anunciar {
                             final String s = context.getArgument("mensagem", String.class).replace('&', '§');
                             final Component parsedLegacyText = LegacyComponentSerializer.legacySection().deserialize(s);
 
-                            Component t = Component.text(" \n§b§lM§f§lS§b§lN §8: §f")
+                            Component t = Component.text(" \n§6§lMine§f§lSky §8: §f")
                                     .append(parsedLegacyText)
-                                    .append(Component.text("\n ")); // appendNewLine?
+                                    .append(Component.text("\n ")
+                                            .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("" +
+                                                    "§a✔ Mensagem oficial do servidor!")))
+                                    ); // appendNewLine?
 
                             for(Player b : proxy.getAllPlayers()) {
                                 b.sendMessage(t);
-                                b.playSound(Sound.sound(Key.key("minecraft", "entity.experience_orb.pickup"),
-                                        Sound.Source.MASTER, 1f, 1f), Sound.Emitter.self());
+                                b.playSound(Sound.sound(Key.key("entity.player.levelup"),
+                                        Sound.Source.MASTER, 1f, 1.4f), Sound.Emitter.self());
                             }
 
                             return Command.SINGLE_SUCCESS;
