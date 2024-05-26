@@ -253,12 +253,12 @@ public class PluginMessage {
 
             switch (mensagem) {
                 case "Spleef":
-                    message = (Component) Component.text("§b§lSpleef §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§b§lSpleef §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextSP);
                     break;
                 case "TijolãoWars":
-                    message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTW);
                     break;
@@ -268,12 +268,12 @@ public class PluginMessage {
                             .hoverEvent(hoverTextC);
                     break;
                 case "TNTRun":
-                    message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTR);
                     break;
                 case "CorridaBoat":
-                    message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextCB);
                     break;
@@ -308,7 +308,7 @@ public class PluginMessage {
                             .hoverEvent(hoverTextE);
                     break;
                 case "Ruínas":
-                    message = (Component) Component.text("§d§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§5§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextR);
                     break;
