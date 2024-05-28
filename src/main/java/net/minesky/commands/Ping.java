@@ -39,18 +39,11 @@ public class Ping {
                         })
                         .executes(context -> {
 
-                            final String s = context.getArgument("mensagem", String.class).replace('&', '§');
-                            final Component parsedLegacyText = LegacyComponentSerializer.legacySection().deserialize(s);
-
-                            Component t = Component.text(" \n§b§lM§f§lS§b§lN §8: §f")
-                                    .append(parsedLegacyText)
-                                    .append(Component.text("\n ")); // appendNewLine?
-
-                            for(Player b : proxy.getAllPlayers()) {
-                                b.sendMessage(t);
-                                b.playSound(Sound.sound(Key.key("minecraft", "entity.experience_orb.pickup"),
-                                        Sound.Source.MASTER, 1f, 1f), Sound.Emitter.self());
-                            }
+                            proxy.getPlayer((String)context.getArgument("jogador", String.class)).ifPresentOrElse((p) -> {
+                                ((CommandSource)context.getSource()).sendMessage(Component.text("O ping deste jogador é de " + getPing(p) + "ms ", NamedTextColor.GREEN));
+                            }, () -> {
+                                ((CommandSource)context.getSource()).sendMessage(Component.text("Jogador não encontrado.", NamedTextColor.RED));
+                            });
 
                             return Command.SINGLE_SUCCESS;
                         })
