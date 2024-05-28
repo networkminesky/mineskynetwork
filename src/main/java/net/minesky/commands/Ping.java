@@ -21,7 +21,7 @@ import net.minesky.Main;
 
 public class Ping {
     public static BrigadierCommand createBrigadierCommand(final ProxyServer proxy) {
-        LiteralCommandNode<CommandSource> staffNode = BrigadierCommand.literalArgumentBuilder("anunciar")
+        LiteralCommandNode<CommandSource> staffNode = BrigadierCommand.literalArgumentBuilder("ping")
                 .requires(a -> a.hasPermission("mineskynetwork.ping"))
                 .executes(context -> {
 

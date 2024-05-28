@@ -80,11 +80,6 @@ public class Main {
                 .aliases("globallist")
                 .build(), gList);
 
-        final BrigadierCommand ping = Ping.createBrigadierCommand(proxy);
-        commandManager.register(commandManager.metaBuilder(ping)
-                .aliases("ping")
-                .build(), ping);
-
         final BrigadierCommand anunciar = Anunciar.createBrigadierCommand(proxy);
         commandManager.register(commandManager.metaBuilder(anunciar)
                 .build(), anunciar);
