@@ -35,6 +35,26 @@ public class PluginMessage {
         if (subChannel.equals("MessageEvent")) {
             String mensagem = in.readUTF();
             Component message = Component.text("NENHUM EVENTO");
+            Component hoverTextSP = Component.text()
+                    .append(Component.text("Spleef").color(NamedTextColor.AQUA).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("  O evento se baseia em um lugar onde onde os players").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" estarão em uma pequena arena onde tentam derrubar um")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" ao outro quebrando a neve abaixo de onde os outros players estão.").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
             Component hoverTextTW = Component.text()
                     .append(Component.text("TijolãoWars").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .append(Component.newline())
@@ -127,6 +147,44 @@ public class PluginMessage {
                     .append(Component.newline())
                     .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .build();
+            Component hoverTextTT = Component.text()
+                    .append(Component.text("TNT-TAG").color(NamedTextColor.RED).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" Semelhante ao uma batata quente só que com tnt").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" Caso tenha a tnt na sua cabeça pegue alguém entre")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" 15 a 30 segundos! Antes que exploda em você!")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
+            Component hoverTextCDP = Component.text()
+                    .append(Component.text("Corrida de Parapente").color(NamedTextColor.DARK_AQUA).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" O Objetivo é que os players passe em todos os").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" arcos utilizando o Parapente (ITEM CUSTOMIZADO DO SERVER)")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
             Component hoverTextMS = Component.text()
                     .append(Component.text("Mini-Wars").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .append(Component.newline())
@@ -194,8 +252,13 @@ public class PluginMessage {
                     .build();
 
             switch (mensagem) {
+                case "Spleef":
+                    message = (Component) Component.text("§b§lSpleef §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextSP);
+                    break;
                 case "TijolãoWars":
-                    message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTW);
                     break;
@@ -205,12 +268,12 @@ public class PluginMessage {
                             .hoverEvent(hoverTextC);
                     break;
                 case "TNTRun":
-                    message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextTR);
                     break;
                 case "CorridaBoat":
-                    message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evneto §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextCB);
                     break;
@@ -218,6 +281,16 @@ public class PluginMessage {
                     message = (Component) Component.text("§4§lSumo §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextS);
+                    break;
+                case "TNTTag":
+                    message = (Component) Component.text("§c§lTNT-TAG §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextTT);
+                    break;
+                case "Parapente":
+                    message = (Component) Component.text("§3§lCorrida de Parapente §8| §aPara participar do evento §lCLIQUE AQUI!")
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextCDP);
                     break;
                 case "Mini-Wars":
                     message = (Component) Component.text("§6§lMINI-WARS §8| §aPara participar do evento §lCLIQUE AQUI!")
@@ -235,7 +308,7 @@ public class PluginMessage {
                             .hoverEvent(hoverTextE);
                     break;
                 case "Ruínas":
-                    message = (Component) Component.text("§d§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
+                    message = (Component) Component.text("§5§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextR);
                     break;
