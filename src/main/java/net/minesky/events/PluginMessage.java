@@ -11,9 +11,11 @@ import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
-import java.io.EOFException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PluginMessage {
     private final ProxyServer proxy;
@@ -185,6 +187,23 @@ public class PluginMessage {
                     .append(Component.newline())
                     .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .build();
+            Component hoverTextCAB = Component.text()
+                    .append(Component.text("Capture a Bandeira").color(TextColor.fromHexString("#2493b4")).decorate(TextDecoration.BOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text("Descrição").color(NamedTextColor.GRAY))
+                    .append(Component.text(":").color(NamedTextColor.GOLD))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" O Objetivo é que o primeiro time á levar todas").color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.text("| ").color(NamedTextColor.GOLD))
+                    .append(Component.text(" as bandeira do outro time até a base ganha.")
+                            .color(NamedTextColor.GRAY))
+                    .append(Component.newline())
+                    .append(Component.newline())
+                    .append(Component.text("CLIQUE AQUI PARA ENTRAR").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                    .build();
             Component hoverTextMS = Component.text()
                     .append(Component.text("Mini-Wars").color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                     .append(Component.newline())
@@ -292,6 +311,11 @@ public class PluginMessage {
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
                             .hoverEvent(hoverTextCDP);
                     break;
+                case "CaptureBandeira":
+                    message = (Component) Component.text().append(Component.text("Capture a Bandeira").color(TextColor.fromHexString("#2493b4")).decorate(TextDecoration.BOLD)).append(Component.text(" §8| §aPara participar do evento §lCLIQUE AQUI")).build()
+                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .hoverEvent(hoverTextCAB);
+                    break;
                 case "Mini-Wars":
                     message = (Component) Component.text("§6§lMINI-WARS §8| §aPara participar do evento §lCLIQUE AQUI!")
                             .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
@@ -331,10 +355,31 @@ public class PluginMessage {
             }
         }
 
+        if (subChannel.equals("TextEventsHEX")) {
+            String colorhex = in.readUTF();
+            String EventHEX = in.readUTF();
+            String mensagem = in.readUTF();
+            Component mensagemFormatada = Component.text().append(Component.text(EventHEX).color(TextColor.fromHexString(colorhex)).decorate(TextDecoration.BOLD)).append(Component.text(mensagem)).build();
+
+            for (Player player : proxy.getAllPlayers()) {
+                player.sendMessage(mensagemFormatada);
+                player.playSound(Sound.sound(Key.key("entity.ender_dragon.ambient"), Sound.Source.AMBIENT, 1.0f, 1.0f), Sound.Emitter.self());
+            }
+        }
+
         if (subChannel.equals("ConectionEvents")) {
             String mensagem = in.readUTF();
 
             proxy.getPlayer(mensagem).ifPresent(a -> a.createConnectionRequest(proxy.getServer("lobby").orElse(null)).fireAndForget());
+        }
+
+        if (subChannel.equals("PlayerMessageHEX")) {
+            String p = in.readUTF();
+            String colorhex = in.readUTF();
+            String EventHEX = in.readUTF();
+            String mensagem = in.readUTF();
+            Component mensagemFormatada = Component.text().append(Component.text(EventHEX).color(TextColor.fromHexString(colorhex)).decorate(TextDecoration.BOLD)).append(Component.text(mensagem)).build();
+            proxy.getPlayer(p).ifPresent(d -> d.sendMessage(mensagemFormatada));
         }
 
         if (subChannel.equals("PlayerMessage")) {
