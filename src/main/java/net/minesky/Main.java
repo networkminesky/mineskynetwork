@@ -1,7 +1,5 @@
 package net.minesky;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
 import com.google.inject.Inject;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandManager;
@@ -13,13 +11,6 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
-import ir.syrent.velocityvanish.velocity.VelocityVanish;
-import net.kyori.adventure.key.Key;
-import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import net.minesky.commands.*;
 import net.minesky.events.PluginMessage;
 import net.minesky.hooks.LiteBansHook;
@@ -29,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Plugin(id = "mineskynetwork", name = "MineSky Network", version = "1.0.3-SNAPSHOT",
-        description = "Plugin para funções gerais de Proxy", authors = {"Drawn", "BrunoC" }, dependencies = { @Dependency(id = "velocityvanish"), @Dependency(id = "litebans") })
+        description = "Plugin para funções gerais de Proxy", authors = {"Drawn", "BrunoC" },
+        dependencies = { })
 public class Main {
 
     public static ProxyServer proxy;
@@ -48,7 +40,7 @@ public class Main {
         List<String> nova = new ArrayList<>();
 
         for(Player b : proxy.getAllPlayers()) {
-            if(!VelocityVanish.instance.vanishedPlayersOnline().contains(b.getUsername()))
+            //if(!VelocityVanish.instance.vanishedPlayersOnline().contains(b.getUsername()))
                 nova.add(b.getUsername());
         }
         return nova;
@@ -71,6 +63,11 @@ public class Main {
                 .aliases("msg", "pm")
                 .build(), tell);
 
+        final BrigadierCommand evento = Evento.createBrigadierCommand(proxy);
+        commandManager.register(commandManager.metaBuilder(evento)
+                .aliases("eventos")
+                .build(), evento);
+
         final BrigadierCommand ping = Ping.createBrigadierCommand(proxy);
         commandManager.register(commandManager.metaBuilder(ping)
                 .build(), ping);
@@ -84,7 +81,7 @@ public class Main {
         commandManager.register(commandManager.metaBuilder(anunciar)
                 .build(), anunciar);
 
-        LiteBansHook.registerEvents();
+        //LiteBansHook.registerEvents();
 
     }
 

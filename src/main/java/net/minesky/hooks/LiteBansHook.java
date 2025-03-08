@@ -3,7 +3,6 @@ package net.minesky.hooks;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.proxy.Player;
-import ir.syrent.velocityvanish.dependencies.cloud.commandframework.bukkit.parsers.OfflinePlayerArgument;
 import litebans.api.Entry;
 import litebans.api.Events;
 import net.minesky.Main;

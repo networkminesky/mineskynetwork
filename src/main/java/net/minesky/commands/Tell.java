@@ -20,7 +20,6 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minesky.Main;
-import net.minesky.hooks.VelocityVanishHook;
 
 public class Tell {
 
@@ -78,7 +77,7 @@ public class Tell {
 
     static void sendTell(Player source, Player who, String msg) {
 
-        if(who == null || (VelocityVanishHook.isPlayerVanished(who) && !source.hasPermission("mineskynetwork.tell.sendtovanished"))) {
+        if(who == null || (/*VelocityVanishHook.isPlayerVanished(who) && */!source.hasPermission("mineskynetwork.tell.sendtovanished"))) {
             source.sendMessage(Component.text("Esse jogador não existe ou não está online.", NamedTextColor.RED));
             return;
         }

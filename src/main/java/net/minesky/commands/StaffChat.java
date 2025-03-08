@@ -5,14 +5,11 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.command.VelocityBrigadierMessage;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.minesky.hooks.VelocityVanishHook;
 
 public class StaffChat {
 
@@ -45,7 +42,7 @@ public class StaffChat {
     static void sendStaffMessage(ProxyServer proxy, String origin, String msg, String originServer) {
         Component p = Component.text("§4[s] §c§n"+origin+"§8: §f"+msg)
                 .hoverEvent(HoverEvent.showText(Component.text("§7Servidor: §6"+originServer
-                        +"\n§7Vanish: "+ (VelocityVanishHook.isPlayerVanished(origin) ? "§asim" : "§cnão")
+                        +"\n§7Vanish: "+ /*(VelocityVanishHook.isPlayerVanished(origin) ? "§asim" : "§cnão")*/ "Talvez"
                 )));
 
         for(Player bs : proxy.getAllPlayers()) {

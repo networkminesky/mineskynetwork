@@ -370,7 +370,7 @@ public class PluginMessage {
         if (subChannel.equals("ConectionEvents")) {
             String mensagem = in.readUTF();
 
-            proxy.getPlayer(mensagem).ifPresent(a -> a.createConnectionRequest(proxy.getServer("lobby").orElse(null)).fireAndForget());
+            proxy.getPlayer(mensagem).ifPresent(a -> a.createConnectionRequest(proxy.getServer("login").orElse(null)).fireAndForget());
         }
 
         if (subChannel.equals("PlayerMessageHEX")) {
