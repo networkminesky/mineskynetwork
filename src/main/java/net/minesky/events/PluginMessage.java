@@ -273,67 +273,67 @@ public class PluginMessage {
             switch (mensagem) {
                 case "Spleef":
                     message = (Component) Component.text("§b§lSpleef §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextSP);
                     break;
                 case "TijolãoWars":
                     message = (Component) Component.text("§6§lTijolãoWars §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextTW);
                     break;
                 case "Corrida":
                     message = (Component) Component.text("§e§lCorrida §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextC);
                     break;
                 case "TNTRun":
                     message = (Component) Component.text("§c§lTNTRUN §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextTR);
                     break;
                 case "CorridaBoat":
                     message = (Component) Component.text("§9§lCorrida de barco §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextCB);
                     break;
                 case "Sumo":
                     message = (Component) Component.text("§4§lSumo §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextS);
                     break;
                 case "TNTTag":
                     message = (Component) Component.text("§c§lTNT-TAG §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextTT);
                     break;
                 case "Parapente":
                     message = (Component) Component.text("§3§lCorrida de Parapente §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextCDP);
                     break;
                 case "CaptureBandeira":
                     message = (Component) Component.text().append(Component.text("Capture a Bandeira").color(TextColor.fromHexString("#2493b4")).decorate(TextDecoration.BOLD)).append(Component.text(" §8| §aPara participar do evento §lCLIQUE AQUI")).build()
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextCAB);
                     break;
                 case "Mini-Wars":
                     message = (Component) Component.text("§6§lMINI-WARS §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextMS);
                     break;
                 case "CopaPVP":
                     message = (Component) Component.text("§6§lCopaPVP §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextCP);
                     break;
                 case "Esconde-esconde":
                     message = (Component) Component.text("§d§lEsconde-Esconde §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextE);
                     break;
                 case "Ruínas":
                     message = (Component) Component.text("§5§lRuínas §8| §aPara participar do evento §lCLIQUE AQUI!")
-                            .clickEvent(ClickEvent.runCommand("/joinqueue eventos"))
+                            .clickEvent(ClickEvent.runCommand("/evento"))
                             .hoverEvent(hoverTextR);
                     break;
             }
