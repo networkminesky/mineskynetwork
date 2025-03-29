@@ -1,11 +1,13 @@
 package net.minesky.events;
 
 import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
@@ -13,7 +15,10 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.minesky.Main;
+import net.minesky.utils.MessageUtils;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -388,6 +393,17 @@ public class PluginMessage {
             Component mensagemF = Component.text(mensagem);
 
             proxy.getPlayer(p).ifPresent(d -> d.sendMessage(mensagemF)); // método mais seguro
+        }
+
+        if (subChannel.equalsIgnoreCase("PlayerVault")) {
+            String player = in.readUTF();
+            String valor = in.readUTF();
+            ByteArrayDataOutput byteData = ByteStreams.newDataOutput();
+            byteData.writeUTF("PlayerVault");
+            byteData.writeUTF(player);
+            byteData.writeUTF(valor);
+            MessageUtils.sendDataToBackgroundServers(byteData);
+            proxy.getPlayer(player).ifPresent(d -> d.sendMessage(Component.text("§aVocê recebeu o valor de $" + valor)));
         }
     }
 }
