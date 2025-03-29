@@ -397,10 +397,12 @@ public class PluginMessage {
 
         if (subChannel.equalsIgnoreCase("PlayerVault")) {
             String player = in.readUTF();
+            String playerUUID = in.readUTF();
             String valor = in.readUTF();
             ByteArrayDataOutput byteData = ByteStreams.newDataOutput();
             byteData.writeUTF("PlayerVault");
             byteData.writeUTF(player);
+            byteData.writeUTF(playerUUID);
             byteData.writeUTF(valor);
             MessageUtils.sendDataToBackgroundServers(byteData);
             proxy.getPlayer(player).ifPresent(d -> d.sendMessage(Component.text("§aVocê recebeu o valor de $" + valor)));
