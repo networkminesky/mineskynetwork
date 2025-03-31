@@ -14,6 +14,7 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import net.minesky.commands.*;
 import net.minesky.events.PluginMessage;
 import net.minesky.hooks.LiteBansHook;
+import net.minesky.hooks.SuperVanishHook;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class Main {
         List<String> nova = new ArrayList<>();
 
         for(Player b : proxy.getAllPlayers()) {
-            //if(!VelocityVanish.instance.vanishedPlayersOnline().contains(b.getUsername()))
+            if(!SuperVanishHook.isPlayerVanished(b))
                 nova.add(b.getUsername());
         }
         return nova;

@@ -28,7 +28,7 @@ public class Evento {
                             proxy.getServer("eventos").orElse(null)
                     ).fireAndForget();
 
-                    Component message = Component.text("Você deve indicar uma mensagem ao comando.", NamedTextColor.RED);
+                    Component message = Component.text("Conectando você ao servidor de eventos...", NamedTextColor.GREEN);
                     source.sendMessage(message);
 
                     return Command.SINGLE_SUCCESS;

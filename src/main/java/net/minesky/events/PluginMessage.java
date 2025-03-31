@@ -16,9 +16,11 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.minesky.Main;
+import net.minesky.hooks.SuperVanishHook;
 import net.minesky.utils.MessageUtils;
 
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -406,6 +408,16 @@ public class PluginMessage {
             byteData.writeUTF(valor);
             MessageUtils.sendDataToBackgroundServers(byteData);
             proxy.getPlayer(player).ifPresent(d -> d.sendMessage(Component.text("§aVocê recebeu o valor de $" + valor)));
+        }
+
+        if (subChannel.equalsIgnoreCase("VanishUpdate")) {
+            UUID uuid = UUID.fromString(in.readUTF());
+            boolean isVanished = in.readBoolean();
+            if (isVanished) {
+                SuperVanishHook.removePlayersIsVanished(uuid);
+            } else {
+                SuperVanishHook.setPlayersIsVanished(uuid);
+            }
         }
     }
 }
