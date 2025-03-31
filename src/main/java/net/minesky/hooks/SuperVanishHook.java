@@ -3,12 +3,10 @@ package net.minesky.hooks;
 import com.velocitypowered.api.proxy.Player;
 import net.minesky.Main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class SuperVanishHook {
-    static List<UUID> PlayersIsVanished = new ArrayList<>();
+    public static Set<UUID> PlayersIsVanished = new HashSet<>();
 
 
     public static boolean isPlayerVanished(Player p) {

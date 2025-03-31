@@ -46,9 +46,9 @@ public class StaffChat {
                         +"\n§7Vanish: "+ (SuperVanishHook.isPlayerVanished(origin) ? "§asim" : "§cnão")
                 )));
 
-        for(Player bs : proxy.getAllPlayers()) {
-            if(bs.hasPermission("mineskynetwork.staffchat"))
-                bs.sendMessage(p);
-        }
+        proxy.getAllPlayers().stream()
+                .filter(bs -> bs.hasPermission("mineskynetwork.staffchat"))
+                .forEach(bs -> bs.sendMessage(p));
+
     }
 }

@@ -38,13 +38,10 @@ public class Main {
     }
 
     public static List<String> onlineWithoutVanished(ProxyServer proxy) {
-        List<String> nova = new ArrayList<>();
-
-        for(Player b : proxy.getAllPlayers()) {
-            if(!SuperVanishHook.isPlayerVanished(b))
-                nova.add(b.getUsername());
-        }
-        return nova;
+        return proxy.getAllPlayers().stream()
+                .filter(b -> !SuperVanishHook.isPlayerVanished(b))
+                .map(Player::getUsername)
+                .toList();
     }
 
     @Subscribe
