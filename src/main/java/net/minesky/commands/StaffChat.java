@@ -75,6 +75,6 @@ public class StaffChat {
                 .replace("§e", "\u001B[93m") // Amarelo
                 .replace("§f", "\u001B[97m") // Branco
                 .replace("§r", "\u001B[0m")  // Resetar
-                .replace("§n", "\u001B[4m");  // Resetar
+                .replace("§n", "\u001B[4m");  // Linha
     }
 }

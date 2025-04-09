@@ -4,20 +4,17 @@ import com.google.inject.Inject;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.Subscribe;
-import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
-import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import net.minesky.commands.*;
-import net.minesky.events.PluginMessage;
-import net.minesky.hooks.LiteBansHook;
+import net.minesky.listeners.PluginMessage;
 import net.minesky.hooks.SuperVanishHook;
+import net.minesky.listeners.ProxyPing;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Plugin(id = "mineskynetwork", name = "MineSky Network", version = "1.0.3-SNAPSHOT",
@@ -49,6 +46,7 @@ public class Main {
         proxy.getChannelRegistrar().register(IDENTIFIER);
 
         proxy.getEventManager().register(this, new PluginMessage(proxy));
+        proxy.getEventManager().register(this, new ProxyPing());
         CommandManager commandManager = proxy.getCommandManager();
 
         final BrigadierCommand staffChat = StaffChat.createBrigadierCommand(proxy);

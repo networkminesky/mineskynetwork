@@ -15,8 +15,8 @@ public class SuperVanishHook {
 
     public static boolean isPlayerVanished(String rawUsername) {
         return Main.proxy.getPlayer(rawUsername)
-                .map(SuperVanishHook::isPlayerVanished) // Se o jogador existir, chama isPlayerVanished(UUID)
-                .orElse(false); // Se não existir, retorna false
+                .map(SuperVanishHook::isPlayerVanished)
+                .orElse(false);
     }
 
     public static boolean isPlayerVanished(UUID rawUUID) {
