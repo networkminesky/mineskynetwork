@@ -11,8 +11,10 @@ public class ProxyPing {
     public void onProxyPing(ProxyPingEvent event) {
         ServerPing org = event.getPing();
 
+        int visiveis = Math.max(0, Main.proxy.getAllPlayers().size() - SuperVanishHook.PlayersIsVanished.size());
+
         ServerPing.Players players = new ServerPing.Players(
-                Main.proxy.getAllPlayers().size() - SuperVanishHook.PlayersIsVanished.size(),
+                visiveis,
                 org.getPlayers().get().getMax(),
                 org.getPlayers().get().getSample()
         );
